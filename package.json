@@ -1,0 +1,28 @@
+{
+  "name": "solana-public-key",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "files": [],
+  "scripts": {
+    "test": "standard && brittle test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lukks/solana-public-key.git"
+  },
+  "author": "Lucas Barrena (LuKks)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lukks/solana-public-key/issues"
+  },
+  "homepage": "https://github.com/lukks/solana-public-key#readme",
+  "devDependencies": {
+    "brittle": "^3.3.2",
+    "standard": "^17.1.0"
+  },
+  "dependencies": {
+    "@noble/ed25519": "^2.2.3",
+    "bs58": "^6.0.0"
+  }
+}
