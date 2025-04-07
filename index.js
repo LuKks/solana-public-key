@@ -14,6 +14,8 @@ module.exports = class PublicKey {
       this.bytes = Buffer.from(input)
     } else if (input instanceof PublicKey) {
       this.bytes = input.bytes
+    } else if (typeof input === 'object' && input && input.toBuffer) {
+      this.bytes = input.toBuffer()
     } else {
       throw new Error('Invalid input')
     }
