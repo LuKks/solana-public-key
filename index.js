@@ -9,8 +9,8 @@ const INSPECT = Symbol.for('nodejs.util.inspect.custom')
 module.exports = class PublicKey {
   constructor (input) {
     if (typeof input === 'string') {
-      this.bytes = bs58.decode(input)
-    } else if (Buffer.isBuffer(input) || input instanceof Uint8Array) {
+      this.bytes = Buffer.from(bs58.decode(input))
+    } else if (Buffer.isBuffer(input) || input instanceof Uint8Array || Array.isArray(input)) {
       this.bytes = Buffer.from(input)
     } else if (input instanceof PublicKey) {
       this.bytes = input.bytes
