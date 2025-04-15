@@ -33,6 +33,10 @@ module.exports = class PublicKey {
     return this.toBase58()
   }
 
+  toJSON () {
+    return this.toBase58()
+  }
+
   toBuffer () {
     return Buffer.from(this.bytes)
   }
