@@ -55,6 +55,8 @@ module.exports = class PublicKey {
     return PublicKey.isOnCurve(this.bytes)
   }
 
+  static default = new PublicKey('11111111111111111111111111111111')
+
   static createProgramAddressSync (seeds, programId) {
     const buffer = Buffer.concat([
       ...seeds,
