@@ -1,6 +1,7 @@
 const crypto = require('crypto')
 const { default: bs58 } = require('bs58')
 const ed25519 = require('@noble/ed25519')
+const BN = require('bn.js')
 
 const PROGRAM_DERIVED_ADDRESS = Buffer.from('ProgramDerivedAddress')
 
@@ -23,6 +24,9 @@ module.exports = class PublicKey {
     if (this.bytes.length !== 32) {
       throw new Error('Invalid length')
     }
+
+    // Compat
+    this._bn = new BN(this.toBuffer())
   }
 
   [INSPECT] () {
@@ -38,7 +42,21 @@ module.exports = class PublicKey {
   }
 
   toBuffer () {
-    return Buffer.from(this.bytes)
+    if (this.bytes.length === 32) {
+      return Buffer.from(this.bytes)
+    }
+
+    const zeroPad = Buffer.alloc(32)
+
+    Buffer.from(this.bytes).copy(zeroPad, 32 - this.bytes.length)
+
+    return zeroPad
+  }
+
+  toBytes () {
+    const buffer = Buffer.from(this.bytes)
+
+    return new Uint8Array(buffer.buffer, buffer.byteOffset, buffer.byteLength)
   }
 
   toBase58 () {
