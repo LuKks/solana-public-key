@@ -1,5 +1,5 @@
 const crypto = require('crypto')
-const { default: bs58 } = require('bs58')
+const bs58 = maybeDefaultModule(require('bs58'))
 const ed25519 = require('@noble/ed25519')
 const BN = require('bn.js')
 
@@ -115,4 +115,8 @@ module.exports = class PublicKey {
       return false
     }
   }
+}
+
+function maybeDefaultModule (mod) {
+  return mod.default ? mod.default : mod
 }
