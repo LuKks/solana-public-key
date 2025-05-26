@@ -107,6 +107,10 @@ module.exports = class PublicKey {
   }
 
   static isOnCurve (buffer) {
+    if (!Buffer.isBuffer(buffer) && !(buffer instanceof Uint8Array)) {
+      throw new Error('Input must be a buffer or bytes')
+    }
+
     try {
       ed25519.ExtendedPoint.fromHex(buffer)
 

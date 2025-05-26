@@ -1,7 +1,7 @@
 {
   "name": "solana-public-key",
   "version": "1.0.0",
-  "description": "",
+  "description": "Create Solana public keys and program-derived addresses",
   "main": "index.js",
   "files": [],
   "scripts": {
