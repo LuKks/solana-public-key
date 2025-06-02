@@ -1,4 +1,4 @@
-const crypto = require('crypto')
+const { sha256 } = require('@noble/hashes/sha256')
 const bs58 = maybeDefaultModule(require('bs58'))
 const ed25519 = require('@noble/ed25519')
 const BN = require('bn.js')
@@ -82,7 +82,7 @@ module.exports = class PublicKey {
       PROGRAM_DERIVED_ADDRESS
     ])
 
-    const hash = crypto.createHash('sha256').update(buffer).digest()
+    const hash = Buffer.from(sha256(buffer))
 
     if (PublicKey.isOnCurve(hash)) {
       throw new Error('Invalid seeds, address must not be on curve')
