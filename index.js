@@ -1,6 +1,6 @@
 const { sha256 } = require('@noble/hashes/sha256')
 const bs58 = maybeDefaultModule(require('bs58'))
-const ed25519 = require('@noble/ed25519')
+const { ed25519 } = require('@noble/curves/ed25519.js')
 const BN = require('bn.js')
 
 const PROGRAM_DERIVED_ADDRESS = Buffer.from('ProgramDerivedAddress')
